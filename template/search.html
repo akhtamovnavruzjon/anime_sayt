@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block contend %}
+
+<div class="container mt-5">
+
+    <h3 class="mb-4">Qidiruv natijalari</h3>
+
+    <div class="row">
+
+        {% for anime in articles %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card anime-card h-100">
+
+                <img src="{{ anime.image.url }}"
+                     class="card-img-top"
+                     alt="{{ anime.title }}">
+
+                <div class="card-body">
+
+                    <h4 class="card-title">{{ anime.title }}</h4>
+
+                    <a href="{% url 'detail' anime.pk %}" class="btn btn-anime mt-3">
+                        Batafsil
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="text-center mt-5">
+            <h2>😢</h2>
+            <h4>Hech narsa topilmadi.</h4>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock contend %}
