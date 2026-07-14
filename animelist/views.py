@@ -1,6 +1,13 @@
 from django.shortcuts import render
 from .models import Anime
 from django.db.models import Q
+from .serializers import AnimeSerializer
+from rest_framework.generics import ListAPIView
+
+class AnimeListView(ListAPIView):
+    queryset=Anime.objects.all()
+    serializer_class = AnimeSerializer
+
 
 def home_page(request):
     animes=Anime.objects.all()

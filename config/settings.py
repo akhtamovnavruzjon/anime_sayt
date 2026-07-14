@@ -15,6 +15,7 @@ SECRET_KEY = 'django-insecure-9*6@q89p49-vhos)i62hg=o1_xdqx7i6zr@t4_dlc-^8tweiv8
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['http://62.84.177.72:8080']
 
 
 # Application definition
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'animelist',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
