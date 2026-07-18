@@ -2,12 +2,27 @@ from django.shortcuts import render
 from .models import Anime
 from django.db.models import Q
 from .serializers import AnimeSerializer
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView,CreateAPIView,RetrieveAPIView,DestroyAPIView,UpdateAPIView
 
 class AnimeListView(ListAPIView):
     queryset=Anime.objects.all()
     serializer_class = AnimeSerializer
 
+class AnimeRetrieveView(RetrieveAPIView):
+    queryset=Anime.objects.all()
+    serializer_class = AnimeSerializer
+
+class AnimeCreateView(CreateAPIView):
+    queryset=Anime.objects.all()
+    serializer_class = AnimeSerializer
+
+class AnimeDestroyView(DestroyAPIView):
+    queryset=Anime.objects.all()
+    serializer_class = AnimeSerializer
+
+class AnimeUpdateView(UpdateAPIView):
+    queryset=Anime.objects.all()
+    serializer_class = AnimeSerializer
 
 def home_page(request):
     animes=Anime.objects.all()
