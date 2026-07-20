@@ -1,13 +1,7 @@
 from django.urls import path
-from .views import (home_page,detail_page,AnimeListView,AnimeRetrieveView,
-                    AnimeDestroyView,AnimeCreateView,AnimeUpdateView)
+from .views import home_page, detail_page
 
-
-urlpatterns=[
-    path('list/',AnimeListView.as_view()),
-    path('delete/<int:pk>/',AnimeDestroyView.as_view()),
-    path('create/',AnimeCreateView.as_view()),
-    path('update/<int:pk>/',AnimeUpdateView.as_view()),
-    path('detail/<int:pk>/',AnimeRetrieveView.as_view()),
-    path('<int:pk>/',detail_page,name='detail')
+urlpatterns = [
+    path('', home_page, name='home'),
+    path('<int:pk>/', detail_page, name='detail'),
 ]

@@ -1,43 +1,20 @@
-from django.shortcuts import render
-from .models import Anime
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
-from .serializers import AnimeSerializer
-from rest_framework.generics import ListAPIView,CreateAPIView,RetrieveAPIView,DestroyAPIView,UpdateAPIView
+from .models import Anime
 
-class AnimeListView(ListAPIView):
-    queryset=Anime.objects.all()
-    serializer_class = AnimeSerializer
-
-class AnimeRetrieveView(RetrieveAPIView):
-    queryset=Anime.objects.all()
-    serializer_class = AnimeSerializer
-
-class AnimeCreateView(CreateAPIView):
-    queryset=Anime.objects.all()
-    serializer_class = AnimeSerializer
-
-class AnimeDestroyView(DestroyAPIView):
-    queryset=Anime.objects.all()
-    serializer_class = AnimeSerializer
-
-class AnimeUpdateView(UpdateAPIView):
-    queryset=Anime.objects.all()
-    serializer_class = AnimeSerializer
 
 def home_page(request):
-    animes=Anime.objects.all()
+    animes = Anime.objects.all()
     query = request.GET.get('q', '')
     if query:
         articles = Anime.objects.filter(
             Q(title__icontains=query) | Q(description__icontains=query)
         )
         return render(request, 'search.html', {"articles": articles})
-    context={
-        "animes":animes
-    }
-    return render(request,'home.html',context)
+    context = {"animes": animes}
+    return render(request, 'home.html', context)
 
-def detail_page(request,pk):
-    tavsif=Anime.objects.get(pk=pk)
-    return render(request,'detail.html',{"tavsif":tavsif})
 
+def detail_page(request, pk):
+    tavsif = get_object_or_404(Anime, pk=pk)
+    return render(request, 'detail.html', {"tavsif": tavsif})
